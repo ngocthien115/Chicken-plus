@@ -1,0 +1,49 @@
+﻿@page "/khachhanglist"
+@using ASM.Share.Models
+@using ASM.Server.Data
+@inject ASM.Share.Models.IKhachhangSvc _khachhangSvc
+
+<a href="/khachhangdialog/0" class="btn btn-primary m-2">Thêm</a>
+
+@if (khachhangs == null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <h3>DANH SÁCH KHÁCH HÀNG</h3>
+    <table class="table text-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Tên khách hàng</th>
+                <th scope="col">Email</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in khachhangs)
+            {
+                <tr>
+                    <td>@item.KhachhangID</td>
+                    <td>@item.FullName</td>
+                    <td>@item.EmailAddress</td>
+                    <td>@item.Ngaysinh</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>
+                        <a class="btn btn-warning text-white" href="/Khachhangdialog/@item.KhachhangID"><i class="fas fa-info"></i> Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code{
+    public List<Khachhang> khachhangs;
+    protected override void OnInitialized()
+    {
+        khachhangs = _khachhangSvc.GetKhachhangAll();
+    }
+}

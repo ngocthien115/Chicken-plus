@@ -1,0 +1,5 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/ASM.Share" Path="C:\Users\nthie\Downloads\ASM\ASM.Share\obj\Debug\net5.0\scopedcss\projectbundle\" />
+  <ContentRoot BasePath="_content/ASM.Share" Path="C:\Users\nthie\Downloads\ASM\ASM.Share\wwwroot\" />
+</StaticWebAssets>

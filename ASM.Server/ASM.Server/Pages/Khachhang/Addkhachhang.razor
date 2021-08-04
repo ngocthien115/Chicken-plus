@@ -1,0 +1,61 @@
+﻿@page "/addkhachhang"
+@using ASM.Share.Models;
+@using Microsoft.AspNetCore.Hosting
+@using System.IO
+@using System
+@inject ASM.Share.Models.IKhachhangSvc _khachhangSvc
+@inject NavigationManager NavigationManager
+
+<div class="w-75 m-auto">
+    <h3>THÊM KHÁCH HÀNG</h3>
+    <EditForm Model="@khachhang" OnValidSubmit="@SubmitForm">
+        <DataAnnotationsValidator />
+        <input type="hidden" @bind="khachhang.KhachhangID" />
+        <div class="form-group">
+            <label>Họ tên</label>
+            <input type="text" class="form-control" placeholder="Họ tên" @bind="@khachhang.FullName">
+            <ValidationMessage For="@(() => khachhang.FullName)" />
+        </div>
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="text" class="form-control" placeholder="E-mail" @bind="@khachhang.EmailAddress">
+            <ValidationMessage For="@(() => khachhang.EmailAddress)" />
+        </div>
+        <div class="form-group">
+            <label>Ngày sinh</label>
+            <input type="date" class="form-control" placeholder="Ngày sinh" @bind="@khachhang.Ngaysinh">
+            <ValidationMessage For="@(() => khachhang.Ngaysinh)" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" class="form-control" placeholder="Số điện thoại" @bind="@khachhang.PhoneNumber">
+            <ValidationMessage For="@(() => khachhang.PhoneNumber)" />
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" class="form-control" placeholder="Mật khẩu" @bind="@khachhang.Password">
+            <ValidationMessage For="@(() => khachhang.Password)" />
+        </div>
+        <div class="form-group">
+            <label>Nhập lại mật khẩu</label>
+            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" @bind="@khachhang.ConfirmPassword">
+            <ValidationMessage For="@(() => khachhang.ConfirmPassword)" />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Lưu" />
+        <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Thoát" />
+    </EditForm>
+</div>
+
+@code {
+    Khachhang khachhang = new Khachhang();
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("khachhangList", true);
+    }
+    private void SubmitForm()
+    {
+        _khachhangSvc.AddKhachhang(khachhang);
+        NavigationManager.NavigateTo("khachhangList", true);
+    }
+}

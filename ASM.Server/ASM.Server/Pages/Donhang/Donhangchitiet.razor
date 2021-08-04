@@ -1,0 +1,97 @@
+﻿@page "/donhangchitiet/{id}"
+@using ASM.Share.Models.ViewModels
+@using ASM.Share.Models
+@inject ASM.Share.Models.IDonhangChitietSvc _donhangchitietSvc
+@inject ASM.Share.Models.IDonhangSvc _donhangSvc
+@inject ASM.Share.Models.IKhachhangSvc _khachhangSvc
+@inject NavigationManager NavigationManager
+
+@if (detail == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <h3>ĐƠN HÀNG CHI TIẾT</h3>
+    <EditForm Model="@dh" OnValidSubmit="@SubmitForm" class="w-75 m-auto">
+        <DataAnnotationsValidator />
+        <input type="hidden" @bind="dh.DonhangID" />
+        <div class="form-group">
+            <label>Tên món ăn</label>
+            <input type="text" class="form-control" placeholder="Họ tên" @bind="@dh.KhachhangID" readonly>
+            <ValidationMessage For="@(() => dh.KhachhangID)" />
+        </div>
+        <div class="form-group">
+            <label>Giá</label>
+            <input type="text" class="form-control" placeholder="Email" @bind="@dh.Ngaydat" readonly>
+            <ValidationMessage For="@(() => dh.Ngaydat)" />
+        </div>
+        <div class="form-group">
+            <label>Mô tả</label>
+            <input type="text" class="form-control" placeholder="Mô tả" @bind="@dh.Tongtien" readonly>
+            <ValidationMessage For="@(() => dh.Tongtien)" />
+        </div>
+        <label>Trạng thái</label>
+        <InputSelect @bind-Value="dh.TrangthaiDonhang" class="form-control">
+            @foreach (var trangthai in Enum.GetValues(typeof(TrangthaiDonhang)))
+                {
+                <option value="@trangthai">@trangthai</option>
+                }
+        </InputSelect>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Thoát" />
+        </div>
+    </EditForm>
+
+    <table class="table mt-3 text-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Tên món ăn</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in detail)
+            {
+                <tr>
+                    <td>@item.donhang.KhachhangID</td>
+                    <td>@item.monan.Name</td>
+                    <td><img src="/images/monan/@item.monan.Hinh" style="width:100px" /></td>
+                    <td>@item.monan.Gia</td>
+                    <td>@item.donhangchitiet.Soluong</td>
+                    <td>@item.donhangchitiet.Thanhtien</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    List<ViewDetails> detail = null;
+    Donhang dh = new Donhang();
+
+    protected override void OnInitialized()
+    {
+
+        detail = _donhangchitietSvc.getChiTiet(int.Parse(id));
+        dh = _donhangSvc.GetDonhang(int.Parse(id));
+
+    }
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("donhangList", true);
+    }
+    private void SubmitForm()
+    {
+        _donhangSvc.EditDonhang(int.Parse(id), dh);
+        NavigationManager.NavigateTo("donhangList", true);
+    }
+}

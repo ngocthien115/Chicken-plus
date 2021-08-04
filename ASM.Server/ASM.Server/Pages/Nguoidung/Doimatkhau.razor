@@ -1,0 +1,17 @@
+﻿@page "/doimatkhau"
+@using ASM.Share.Models
+@using System.Web
+@inject ASM.Share.Models.INguoidungSvc _nguoidungSvc
+
+<div>
+    <h3>ĐỔI MẬT KHẨU</h3>
+    <AuthorizeView>
+        <p>@context.User.Identity.Name</p>
+        <p>@context.User.Identity.IsAuthenticated</p>
+        <p>@context.User.Identity.AuthenticationType</p>
+    </AuthorizeView>
+</div>
+
+@code {
+    Nguoidung nguoidung = new Nguoidung();
+}

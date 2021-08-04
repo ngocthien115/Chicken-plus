@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASM.Server", "ASM.Server\ASM.Server.csproj", "{725CD51F-2FC0-459E-B28B-E11EA4AC4195}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASM.Share", "..\ASM.Share\ASM.Share.csproj", "{018EF9CD-45AF-43E9-8FC1-19DB52E7C64C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASM.Api", "ASM.Api\ASM.Api.csproj", "{06E6A763-2557-4FF8-B392-F484B93F93D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{725CD51F-2FC0-459E-B28B-E11EA4AC4195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725CD51F-2FC0-459E-B28B-E11EA4AC4195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725CD51F-2FC0-459E-B28B-E11EA4AC4195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725CD51F-2FC0-459E-B28B-E11EA4AC4195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018EF9CD-45AF-43E9-8FC1-19DB52E7C64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018EF9CD-45AF-43E9-8FC1-19DB52E7C64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018EF9CD-45AF-43E9-8FC1-19DB52E7C64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018EF9CD-45AF-43E9-8FC1-19DB52E7C64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E6A763-2557-4FF8-B392-F484B93F93D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E6A763-2557-4FF8-B392-F484B93F93D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E6A763-2557-4FF8-B392-F484B93F93D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E6A763-2557-4FF8-B392-F484B93F93D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2437996F-E1D1-47C5-AB77-300713D108C3}
+	EndGlobalSection
+EndGlobal

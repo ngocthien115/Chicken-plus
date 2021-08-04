@@ -1,0 +1,13 @@
+﻿@page "/loginControl"
+@using System.Web;
+
+<AuthorizeView>
+    <Authorized>
+        <div class="float-right">
+            <b>Hello, <a href="Doimatkhau">@context.User.Identity.Name</a>!</b>
+            <a class="ml-md-auto btn btn-primary" href="/logout?returnUrl=/" target="_top">Đăng xuất</a>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+    </NotAuthorized>
+</AuthorizeView>

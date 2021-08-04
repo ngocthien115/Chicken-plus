@@ -1,0 +1,50 @@
+﻿@page "/nguoidunglist"
+@using ASM.Share.Models
+@using ASM.Server.Data
+@inject ASM.Share.Models.INguoidungSvc _nguoidungSvc
+
+
+@if (nguoidungs == null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <h3>DANH SÁCH NGƯỜI DÙNG</h3>
+    <table class="table text-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Tên đăng nhập</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Email</th>
+                <th scope="col">Chức danh</th>
+                <th scope="col">Vai trò</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in nguoidungs)
+            {
+                <tr>
+                    <td>@item.NguoidungID</td>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Title</td>
+                    <td>@item.Role</td>
+                    <td>
+                        <a class="btn btn-warning text-white" href="/Nguoidungdialog/@item.NguoidungID"><i class="fas fa-info"></i> Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code{
+    public List<Nguoidung> nguoidungs = null;
+    protected override void OnInitialized()
+    {
+        nguoidungs = _nguoidungSvc.GetNguoidungAll();
+    }
+}

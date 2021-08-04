@@ -1,0 +1,68 @@
+﻿@page "/MonanList"
+@using ASM.Share.Models
+@using ASM.Server.Data
+@inject ASM.Share.Models.IMonAnSvc monanSvc
+
+
+@if (monans == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <h3>DANH SÁCH MÓN ĂN</h3>
+    <a href="/monandialog/0" class="btn btn-primary m-2">Thêm</a>
+    <table class="table text-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Tên</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Phân loại</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in monans)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Gia</td>
+                    <td>
+                        @if (item.Phanloai == Phanloai.Monan)
+                        {
+                            <span>Món ăn</span>
+                        }
+                        else if (item.Phanloai == Phanloai.Combo)
+                        {
+                            <span>Combo</span>
+                        }
+                        else
+                        {
+                            <span>Nước</span>
+                        }
+                    </td>
+                    <td><img src="images/monan/@item.Hinh" style="width:150px" /></td>
+                    <td><input class="form-check" type="checkbox" @bind="@item.Trangthai" readonly/></td>
+                    <td>
+                        <a class="btn btn-warning text-white" href="/Monandialog/@item.MonAnID"><i class="fas fa-info"></i> Chi tiết</a>
+                        <a class="btn btn-danger text-white" @onclick="(() => Delete(item.MonAnID))"><i class="fas fa-trash-alt"></i> Xoá</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code{
+    List<ASM.Share.Models.MonAn> monans = null;
+    protected override void OnInitialized()
+    {
+        monans = monanSvc.GetMonAnAll();
+    }
+    private void Delete(int id)
+    {
+        monanSvc.DeleteMonAn(id);
+        OnInitialized();
+    }
+}

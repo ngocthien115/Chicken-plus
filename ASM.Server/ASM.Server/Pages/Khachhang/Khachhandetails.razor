@@ -1,0 +1,64 @@
+﻿@page "/khachhangdialog/{id}"
+@using ASM.Share.Models;
+@using Microsoft.AspNetCore.Hosting
+@using System.IO
+@using System
+@inject ASM.Share.Models.IKhachhangSvc _khachhangSvc
+@inject NavigationManager NavigationManager
+
+
+
+<div class="w-75 m-auto">
+    <h3>CHI TIẾT KHÁCH HÀNG</h3>
+    <EditForm Model="@khachhang">
+        <DataAnnotationsValidator />
+        <input type="hidden" @bind="khachhang.KhachhangID" />
+        <div class="form-group">
+            <label>Họ tên</label>
+            <input type="text" class="form-control" placeholder="Họ tên" @bind="@khachhang.FullName" disabled>
+            <ValidationMessage For="@(() => khachhang.FullName)" />
+        </div>
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="text" class="form-control" placeholder="E-mail" @bind="@khachhang.EmailAddress" disabled>
+            <ValidationMessage For="@(() => khachhang.EmailAddress)" />
+        </div>
+        <div class="form-group">
+            <label>Ngày sinh</label>
+            <input type="date" class="form-control" placeholder="Ngày sinh" @bind="@khachhang.Ngaysinh" disabled>
+            <ValidationMessage For="@(() => khachhang.Ngaysinh)" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" class="form-control" placeholder="Số điện thoại" @bind="@khachhang.PhoneNumber" disabled>
+            <ValidationMessage For="@(() => khachhang.PhoneNumber)" />
+        </div>
+        <input type="button" class="btn btn-info" @onclick="@Cancel" value="Thoát" />
+        <input type="button" class="btn btn-danger" @onclick="@Delete" value="Xoá" />
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    public IJSRuntime JSRuntime { get; set; }
+
+    Khachhang khachhang = new Khachhang();
+
+    protected override void OnInitialized()
+    {
+        khachhang = _khachhangSvc.GetKhachhang(int.Parse(id));
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("khachhangList", true);
+    }
+
+    public void Delete()
+    {
+        _khachhangSvc.DeleteKhachHang(int.Parse(id));
+        NavigationManager.NavigateTo("khachhangList", true);
+    }
+}

@@ -1,0 +1,88 @@
+﻿@page "/nguoidungdialog/{id}"
+@using ASM.Share.Models;
+@inject ASM.Share.Models.INguoidungSvc _nguoidungSvc;
+@inject NavigationManager NavigationManager;
+
+
+
+<div class="w-75 m-auto">
+    <h3>@Tieude</h3>
+    <EditForm Model="@nguoidung" OnValidSubmit="@SubmitForm">
+        <DataAnnotationsValidator />
+        <input type="hidden" @bind="nguoidung.NguoidungID" />
+        <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input type="text" class="form-control" placeholder="Tên đăng nhập" @bind="@nguoidung.UserName">
+            <ValidationMessage For="@(() => nguoidung.UserName)" />
+        </div>
+        <div class="form-group">
+            <label>Họ và tên</label>
+            <input type="text" class="form-control" placeholder="Họ tên" @bind="@nguoidung.FullName">
+            <ValidationMessage For="@(() => nguoidung.FullName)" />
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" placeholder="Email" @bind="@nguoidung.Email">
+            <ValidationMessage For="@(() => nguoidung.Email)" />
+        </div>
+        <div class="form-group">
+            <label>Chức danh</label>
+            <input type="text" class="form-control" placeholder="Chức danh" @bind="@nguoidung.Title">
+            <ValidationMessage For="@(() => nguoidung.Title)" />
+        </div>
+        <div class="form-group">
+            <label>Ngày sinh</label>
+            <input type="text" class="form-control" placeholder="Ngày sinh" @bind="@nguoidung.DOB">
+            <ValidationMessage For="@(() => nguoidung.DOB)" />
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" @bind="nguoidung.Admin" /> Quản trị
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" @bind="nguoidung.Locked" /> Sử dụng
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Thoát" />
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private ASM.Share.Models.Nguoidung nguoidung { get; set; }
+    private string Tieude = "";
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            Tieude = "THÊM NGƯỜI DÙNG";
+        }
+        else
+        {
+            Tieude = "SỬA NGƯỜI DÙNG";
+            nguoidung = _nguoidungSvc.GetNguoidung(int.Parse(id));
+        }
+    }
+    private void SubmitForm()
+    {
+        if (nguoidung.NguoidungID == 0)
+        {
+            _nguoidungSvc.AddNguoidung(nguoidung);
+        }
+        else
+        {
+            _nguoidungSvc.EditNguoidung(nguoidung.NguoidungID, nguoidung);
+        }
+        NavigationManager.NavigateTo("NguoidungList");
+    }
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("NguoidungList", true);
+    }
+}
