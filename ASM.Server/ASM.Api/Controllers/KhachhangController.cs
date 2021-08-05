@@ -1,4 +1,5 @@
 ﻿using ASM.Share.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ASM.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class KhachhangController : ControllerBase
     {
         private IKhachhangSvc _khachhangSvc;
@@ -18,38 +20,41 @@ namespace ASM.Api.Controllers
         {
             _khachhangSvc = khachhangSvc;
         }
+
         // GET: api/<KhachhangController>
-        [HttpGet]
-        public async Task<List<Khachhang>> Get()
-        {
-            var khs = _khachhangSvc.GetKhachhangAll();
-            return khs;
-        }
+        //[HttpGet]
+        //public IEnumerable<Khachhang> Get()
+        //{
+        //    return _khachhangSvc.GetKhachhangAll();
+        //}
 
         // GET api/<KhachhangController>/5
+        
         [HttpGet("{id}")]
         public Khachhang Get(int id)
         {
-            var khs = _khachhangSvc.GetKhachhang(id);
-            return khs;
+            return _khachhangSvc.GetKhachhang(id);
         }
 
+        [AllowAnonymous]
         // POST api/<KhachhangController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Khachhang khachhang)
         {
+            if (khachhang != null)
+            {
+                _khachhangSvc.AddKhachhang(khachhang);
+            }
         }
 
         // PUT api/<KhachhangController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Khachhang khachhang)
         {
-        }
-
-        // DELETE api/<KhachhangController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (id != 0 && khachhang != null)
+            {
+                _khachhangSvc.EditKhachhang(id, khachhang);
+            }
         }
     }
 }

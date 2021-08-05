@@ -1,0 +1,37 @@
+﻿@page "/cart"
+@using System.Net
+@using ASM.Share.Models
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject NavigationManager NavigationManager
+@layout WebLayout;
+
+<h1>Cart</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Tên món ăn</th>
+            <th scope="col">Hình</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Thành tiền</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in giohang.ListViewCart)
+        {
+            <tr>
+                <th>@item.MonAn.Name</th>
+                <td>Mark</td>
+                <td>Otto</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@code {
+    public ASM.Share.Models.Cart giohang;
+}

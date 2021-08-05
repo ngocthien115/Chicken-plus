@@ -26,8 +26,9 @@ namespace ASM.Api.Controllers
             _configuration = config;
         }
 
+        
         [HttpPost]
-        public async Task<IEnumerable<ViewToken>> Post(ViewWebLogin viewWebLogin)
+        public async Task<IActionResult> Post(ViewWebLogin viewWebLogin)
         {
             List<ViewToken> list = new List<ViewToken>();
             if (viewWebLogin != null && !string.IsNullOrEmpty(viewWebLogin.Email) && !string.IsNullOrEmpty(viewWebLogin.Password))
@@ -41,7 +42,7 @@ namespace ASM.Api.Controllers
                         {
                             new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.Iat,DateTime.UtcNow.ToString()),
+                            new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
 
                             new Claim("Id", khachhang.KhachhangID.ToString()), //
                             new Claim("FullName", khachhang.FullName),
@@ -56,17 +57,18 @@ namespace ASM.Api.Controllers
                             Token = new JwtSecurityTokenHandler().WriteToken(token),
                             KhachhangId = khachhang.KhachhangID
                         };
+
                         list.Add(viewToken);
-                        return list;
+                        return Ok(viewToken);
                     }
                     else
-                        return list;
+                        return BadRequest();
                 }
                 else
-                    return list;
+                    return BadRequest();
             }
             else
-                return list;
+                return BadRequest(); 
         }
     }
 }

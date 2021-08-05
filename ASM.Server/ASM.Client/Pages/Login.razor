@@ -1,0 +1,24 @@
+﻿@page "/login"
+@using System.Web
+@using System.Net
+@using System.ComponentModel.DataAnnotations
+@layout WebLayout
+@inject NavigationManager NavigationManager
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IJSRuntime JSRuntime
+
+<div>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" placeholder="E-mail" aria-label="email"
+               aria-describedby="addon-wrapping" @bind="@email" />
+
+    </div>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" placeholder="E-mail" aria-label="email"
+               aria-describedby="addon-wrapping" @bind="@password" />
+    </div>
+    <button class="btn btn-primary" @onclick="CheckLogin">Đăng nhập</button>
+</div>

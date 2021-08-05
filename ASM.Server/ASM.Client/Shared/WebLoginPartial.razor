@@ -1,0 +1,105 @@
+﻿@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject NavigationManager NavigationManager
+
+@if (emailAddress != null && emailAddress != "")
+{
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a class="navbar-brand mt-2 mt-lg-0" href="/">
+            CHICKEN PLUS
+        </a>
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/history">Đơn hàng</a>
+            </li>
+        </ul>
+        <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+        <!-- Icon search -->
+        <!-- Icon cart -->
+        <a class="text-reset me-3" href="/cart">
+            <i class="fas fa-shopping-cart"></i>
+            @if (cart != null && cart != "")
+            {
+                <span class="badge rounded-pill badge-notification bg-danger">@count</span>
+            }
+            else
+            {
+                <span class="badge rounded-pill badge-notification bg-danger"></span>
+            }
+
+        </a>
+
+        <!-- Avatar -->
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+           id="navbarDropdownMenuLink"
+           role="button"
+           data-mdb-toggle="dropdown"
+           aria-expanded="false">
+            <img src="~/images/user-tie.png"
+                 class="rounded-circle"
+                 height="25"
+                 alt=""
+                 loading="lazy" />
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink">
+            <li>
+                <a class="dropdown-item" href="/infomation">Thông tin</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="/changepassword">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="/logout">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a class="navbar-brand mt-2 mt-lg-0" href="/">
+           CHICKEN PLUS
+        </a>
+    </div>
+    <!-- Collapsible wrapper -->
+    <!-- Right elements -->
+<div class="d-flex align-items-center">
+    <a class="text-reset me-3" href="/login">
+        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+    </a>
+    <a class="text-reset me-3" href="/register">
+        <i class="fas fa-user-plus"></i> Đăng ký
+    </a>
+
+</div>
+}
+
+@code{
+    string count;
+    string emailAddress;
+    string cart;
+    protected override async Task OnInitializedAsync()
+    {
+        emailAddress = sessionStorage.GetItem<string>("email");
+        cart = sessionStorage.GetItem<string>("cart");
+    }
+
+    protected void o()
+    {
+        emailAddress = sessionStorage.GetItem<string>("email");
+        cart = sessionStorage.GetItem<string>("cart");
+    }
+    protected void Logout()
+    {
+        sessionStorage.RemoveItem("AccessToken");
+        sessionStorage.RemoveItem("Email");
+        NavigationManager.NavigateTo("/");
+    }
+}

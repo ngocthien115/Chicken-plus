@@ -1,0 +1,83 @@
+﻿@page "/"
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject HttpClient client
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .list-product {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .product {
+        width: 188px;
+        margin: 10px;
+    }
+
+    .img-responsive {
+        width: 200px;
+        height: 150px;
+        display: block;
+        margin: auto;
+    }
+
+    .title {
+        color: #0e0e0e;
+        display: block;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        height: 60px;
+    }
+
+    .field-price {
+        font-size: 24px;
+        color: #d50000;
+        margin-bottom: 15px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .viewProduct, .addProduct {
+        border: 0;
+        font-weight: 700;
+        padding: 9px 5px;
+        background: #ffd800;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        display: block;
+        width: 186px;
+        margin: 0 auto;
+        color: #0e0e0e;
+    }
+</style>
+
+@if (monans == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <div class="list-product">
+        @foreach (var item in monans)
+        {
+            <div class="product">
+                @{
+                    temp = imgUrl + item.Hinh;
+                }
+                <img src="@temp" class="img-responsive" />
+                <span class="title">@item.Name</span>
+                <div class="field-price">@item.Gia VNĐ</div>
+                <a class="addProduct text-center" href="javascript:addCart();">
+                    Thêm vào giỏ hàng <img id="imgBusy_2" src="~/images/busy.gif" style="display:none" />
+                </a>
+            </div>
+        }
+    </div>
+}

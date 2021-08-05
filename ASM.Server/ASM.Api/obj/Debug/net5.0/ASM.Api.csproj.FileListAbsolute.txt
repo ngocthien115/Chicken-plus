@@ -17,10 +17,6 @@ C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\ASM.Api.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\ref\ASM.Api.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\ASM.Api.pdb
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Humanizer.dll
-C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Web.Cors.dll
-C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Net.Http.Formatting.dll
-C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Web.Http.dll
-C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Web.Http.Cors.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
@@ -42,8 +38,6 @@ C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.Ident
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.JSInterop.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Newtonsoft.Json.dll
-C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

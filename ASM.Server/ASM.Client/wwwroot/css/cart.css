@@ -1,0 +1,14 @@
+.viewProduct, .addProduct{
+    border:0;
+    font-weight:700;
+    padding:9px 5px;
+    background: #ffd800;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    display:block;
+    width:186px;
+    margin:0 auto;
+    color:#0e0e0e;
+    text-align:center;
+}
