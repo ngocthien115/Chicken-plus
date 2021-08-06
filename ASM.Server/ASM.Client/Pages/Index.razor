@@ -64,20 +64,23 @@
 }
 else
 {
-    <div class="list-product">
-        @foreach (var item in monans)
-        {
-            <div class="product">
-                @{
-                    temp = imgUrl + item.Hinh;
-                }
-                <img src="@temp" class="img-responsive" />
-                <span class="title">@item.Name</span>
-                <div class="field-price">@item.Gia VNĐ</div>
-                <a class="addProduct text-center" href="javascript:addCart();">
-                    Thêm vào giỏ hàng <img id="imgBusy_2" src="~/images/busy.gif" style="display:none" />
-                </a>
-            </div>
-        }
-    </div>
+<div class="list-product">
+    @foreach (var item in monans)
+    {
+        <div class="product">
+            @{
+                temp = imgUrl + item.Hinh;
+            }
+            <img src="@temp" class="img-responsive" />
+            <span class="title">@item.Name</span>
+            <div class="field-price">@item.Gia VNĐ</div>
+            <a class="addProduct text-center" href="javascript:addCart();">
+                Thêm vào giỏ hàng <img id="imgBusy_2" src="~/images/busy.gif" style="display:none" />
+            </a>
+        </div>
+    }
+    <h2>Session token: @token</h2>
+    <h2>Session id khachhag: @id</h2>
+    <h2>Session email: @email</h2>
+</div>
 }

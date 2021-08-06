@@ -97,21 +97,22 @@ using ASM.Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 84 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
+#line 87 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
       
     string count;
     string emailAddress;
     string cart;
     protected override async Task OnInitializedAsync()
     {
-        emailAddress = sessionStorage.GetItem<string>("email");
-        cart = sessionStorage.GetItem<string>("cart");
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        cart = sessionStorage.GetItem<string>("Cart");
     }
 
     protected void o()
     {
-        emailAddress = sessionStorage.GetItem<string>("email");
-        cart = sessionStorage.GetItem<string>("cart");
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        cart = sessionStorage.GetItem<string>("Cart");
+        
     }
     protected void Logout()
     {

@@ -72,8 +72,8 @@ namespace ASM.Client.Pages
                         sessionStorage.SetItem("Email", email);
                         sessionStorage.SetItem("AccessToken", viewToken.Token);
 
-                        // await JSRuntime.InvokeAsync<object>("refreshMenu", new { email = email });
-                        NavigationManager.NavigateTo("/");
+                        //await JSRuntime.InvokeAsync<object>("refreshMenu", new { email = email });
+                        NavigationManager.NavigateTo("/", true);
                     }
                 }
             }

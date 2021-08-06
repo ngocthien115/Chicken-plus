@@ -110,8 +110,7 @@ using System.ComponentModel.DataAnnotations;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/loginCustomer")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

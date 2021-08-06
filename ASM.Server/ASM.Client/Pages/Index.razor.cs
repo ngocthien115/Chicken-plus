@@ -15,11 +15,19 @@ namespace ASM.Client.Pages
 
         protected string imgUrl = "";
         protected string temp = "";
+        private string id;
+        private string token;
+        private string email;
+
 
         public List<MonAn> monans;
         protected override async Task OnInitializedAsync()
         {
             await LoadData();
+            id = sessionStorage.GetItem<string>("KhachhangId");
+            token = sessionStorage.GetItem<string>("AccessToken");
+            email = sessionStorage.GetItem<string>("Email");
+
         }
         protected async Task LoadData()
         {
@@ -41,8 +49,7 @@ namespace ASM.Client.Pages
         }
         private void AddCart(int id)
         {
-            //var cart = HttpContext.Session.GetString("cart");//get key cart
-            var cart = sessionStorage.GetItem<string>("cart");//get key cart
+            var cart = sessionStorage.GetItem<string>("Cart");//get key cart
             if (cart == null)
             {
 
@@ -63,7 +70,7 @@ namespace ASM.Client.Pages
                     Tongtien = Tinhtien(listCart)
                 };
 
-                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+                sessionStorage.SetItem("Cart", JsonConvert.SerializeObject(giohang));
                 //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
             }
             else
@@ -94,7 +101,7 @@ namespace ASM.Client.Pages
                     });
                 }
                 giohang.Tongtien = Tinhtien(giohang.ListViewCart);
-                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+                sessionStorage.SetItem("Cart", JsonConvert.SerializeObject(giohang));
 
                 //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
             }

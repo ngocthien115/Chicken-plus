@@ -71,12 +71,15 @@ else
     <!-- Collapsible wrapper -->
     <!-- Right elements -->
 <div class="d-flex align-items-center">
-    <a class="text-reset me-3" href="/login">
+    <a class="text-reset me-3" href="/logincustomer">
         <i class="fas fa-sign-in-alt"></i> Đăng nhập
     </a>
     <a class="text-reset me-3" href="/register">
         <i class="fas fa-user-plus"></i> Đăng ký
     </a>
+    <button class="text-reset me-3" @onclick="o">
+        <i class="fas fa-user-plus"></i> check
+    </button>
 
 </div>
 }
@@ -87,14 +90,15 @@ else
     string cart;
     protected override async Task OnInitializedAsync()
     {
-        emailAddress = sessionStorage.GetItem<string>("email");
-        cart = sessionStorage.GetItem<string>("cart");
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        cart = sessionStorage.GetItem<string>("Cart");
     }
 
     protected void o()
     {
-        emailAddress = sessionStorage.GetItem<string>("email");
-        cart = sessionStorage.GetItem<string>("cart");
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        cart = sessionStorage.GetItem<string>("Cart");
+        
     }
     protected void Logout()
     {
