@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace ASM.Client.Shared
+namespace ASM.Client.Pages
 {
     #line hidden
     using System;
@@ -89,38 +89,13 @@ using ASM.Share.Models;
 #line default
 #line hidden
 #nullable disable
-    public partial class WebLoginPartial : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Cart_razor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 98 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
-      
-    string count;
-    string emailAddress;
-    string cart;
-    protected override async Task OnInitializedAsync()
-    {
-        emailAddress = sessionStorage.GetItem<string>("Email");
-        cart = sessionStorage.GetItem<string>("Cart");
-        Console.WriteLine(cart);
-    }
-
-    protected void Logout()
-    {
-        sessionStorage.RemoveItem("AccessToken");
-        sessionStorage.RemoveItem("Email");
-        NavigationManager.NavigateTo("/");
-    }
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
 }
 #pragma warning restore 1591

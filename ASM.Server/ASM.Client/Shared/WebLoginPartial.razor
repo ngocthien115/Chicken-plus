@@ -40,7 +40,7 @@
            role="button"
            data-mdb-toggle="dropdown"
            aria-expanded="false">
-            <img src="~/images/user-tie.png"
+            <img src="/images/user-tie.png"
                  class="rounded-circle"
                  height="25"
                  alt=""
@@ -48,6 +48,9 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdownMenuLink">
+            <li>
+                <a class="dropdown-item">@emailAddress</a>
+            </li>
             <li>
                 <a class="dropdown-item" href="/infomation">Thông tin</a>
             </li>
@@ -71,16 +74,24 @@ else
     <!-- Collapsible wrapper -->
     <!-- Right elements -->
 <div class="d-flex align-items-center">
+    <a class="text-reset me-3" href="/cart">
+        <i class="fas fa-shopping-cart"></i>
+        @if (cart != null && cart != "")
+        {
+            <span class="badge rounded-pill badge-notification bg-danger">@count</span>
+        }
+        else
+        {
+            <span class="badge rounded-pill badge-notification bg-danger"></span>
+        }
+
+    </a>
     <a class="text-reset me-3" href="/logincustomer">
         <i class="fas fa-sign-in-alt"></i> Đăng nhập
     </a>
     <a class="text-reset me-3" href="/register">
         <i class="fas fa-user-plus"></i> Đăng ký
     </a>
-    <button class="text-reset me-3" @onclick="o">
-        <i class="fas fa-user-plus"></i> check
-    </button>
-
 </div>
 }
 
@@ -92,14 +103,9 @@ else
     {
         emailAddress = sessionStorage.GetItem<string>("Email");
         cart = sessionStorage.GetItem<string>("Cart");
+        Console.WriteLine(cart);
     }
 
-    protected void o()
-    {
-        emailAddress = sessionStorage.GetItem<string>("Email");
-        cart = sessionStorage.GetItem<string>("Cart");
-        
-    }
     protected void Logout()
     {
         sessionStorage.RemoveItem("AccessToken");

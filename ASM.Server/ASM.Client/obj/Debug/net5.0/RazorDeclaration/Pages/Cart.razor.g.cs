@@ -96,7 +96,6 @@ using ASM.Share.Models;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cart")]
     public partial class Cart : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,14 +104,6 @@ using ASM.Share.Models;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 35 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Cart.razor"
-       
-    public ASM.Share.Models.Cart giohang;
-
-#line default
-#line hidden
-#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
