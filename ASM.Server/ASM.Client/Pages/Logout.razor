@@ -2,7 +2,6 @@
 @using System.Web
 @using System.Net
 @using System.ComponentModel.DataAnnotations
-@layout WebLayout
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
@@ -20,7 +19,7 @@
     protected override async Task OnInitializedAsync()
     {
         sessionStorage.Clear();
-        await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/");
+        //await JSRuntime.InvokeAsync<object>("refreshMenu", "");
+        NavigationManager.NavigateTo("/", true);
     }
 }

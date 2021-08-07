@@ -71,10 +71,13 @@ else
             @{
                 temp = imgUrl + item.Hinh;
             }
-            <img src="@temp" class="img-responsive" />
-            <span class="title">@item.Name</span>
-            <div class="field-price">@item.Gia VNĐ</div>
-            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.MonAnID);" @onclick="() => AddCart(item.MonAnID)">Add order 
+            <a href="details/@item.MonAnID">
+                <img src="@temp" class="img-responsive" />
+                <span class="title">@item.Name</span>
+                <div class="field-price">@item.Gia VNĐ</div>
+            </a>
+            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.MonAnID);" @onclick="() => AddCart(item.MonAnID)">
+                Add order
                 <img id="imgBusy_@item.MonAnID" src="images/busy.gif" style="display:none" />
             </button>
         </div>

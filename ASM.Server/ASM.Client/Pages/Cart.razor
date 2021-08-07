@@ -6,55 +6,62 @@
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject NavigationManager NavigationManager
 
-<h1>Cart</h1>
-<table class="table table-bordered w-75 m-auto">
-    <thead>
-        <tr>
-            <th scope="col">Tên món ăn</th>
-            <th scope="col">Hình</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col">Giá</th>
-            <th scope="col">Thành tiền</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in giohang.ListViewCart)
-        {
-            @if (item != null)
-            {
+    <h1>Cart</h1>
+@if (giohang == null)
+{
+    <p>Chưa có gì trong giỏ hàng, hãy mua sản phẩm</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <th>@item.MonAn.Name</th>
-                <td>
-                    <img src="@(imgUrl + item.MonAn.Hinh)" style="width:150px" />
-                </td>
-                <td>
-                    <input type="number" id="txtQuantity_@item.MonAn.MonAnID"
-                           @oninput="(e) => item.Quantity = int.Parse(e.Value.ToString())"
-                           @onchange="() => UpdateCart(item)" value="@item.Quantity" />
-                </td>
-                <td id="tdGia_@item.MonAn.MonAnID">@item.MonAn.Gia</td>
-                <td id="tdTien_@item.MonAn.MonAnID">@item.Sotien</td>
-                <td>
-                    <a href="javascript:return false;" @onclick="() => DeleteCart(item)"
-                       onmouseup="delCart(@item.MonAn.MonAnID)">Delete</a>
-                </td>
+                <th scope="col">Tên món ăn</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col"></th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in giohang.ListViewCart)
+            {
+                @if (item != null)
+                {
+                <tr>
+                    <th>@item.MonAn.Name</th>
+                    <td>
+                        <img src="@(imgUrl + item.MonAn.Hinh)" style="width:150px" />
+                    </td>
+                    <td>
+                        <input type="number" id="txtQuantity_@item.MonAn.MonAnID"
+                               @oninput="(e) => item.Quantity = int.Parse(e.Value.ToString())"
+                               @onchange="() => UpdateCart(item)" value="@item.Quantity" />
+                    </td>
+                    <td id="tdGia_@item.MonAn.MonAnID">@item.MonAn.Gia</td>
+                    <td id="tdTien_@item.MonAn.MonAnID">@item.Sotien</td>
+                    <td>
+                        <a href="javascript:return false;" @onclick="() => DeleteCart(item)"
+                           onmouseup="delCart(@item.MonAn.MonAnID)">Delete</a>
+                    </td>
+                </tr>
+                }
             }
+        </tbody>
+    </table>
+    <p>
+        <div>Tổng tiền: <span id="spTotal" class="font-weight-bold">@giohang.Tongtien</span></div>
+    </p>
+    <p>
+        @if (@emailAddress != null && @emailAddress != "")
+        {
+            <button class="btn btn-link" @onclick="OrderCart">Đặt hàng</button>
         }
-    </tbody>
-</table>
-<p>
-    <div>Tổng tiền: <span id="spTotal">@giohang.Tongtien</span></div>
-</p>
-<p>
-    @if (@emailAddress != null && @emailAddress != "")
-    {
-        <button class="btn btn-link" @onclick="OrderCart">Đặt hàng</button>
-    }
-    else
-    {
-        <span>Bạn cần <a href="/loginCustomer">đăng nhập</a> để đặt hàng</span>
-    }
-</p>
+        else
+        {
+            <span>Bạn cần <a href="/loginCustomer">đăng nhập</a> để đặt hàng</span>
+        }
+    </p>
 
+}

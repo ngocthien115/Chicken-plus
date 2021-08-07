@@ -750,3 +750,5 @@ C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\Razor\Pages\
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Blazor.HttpClient.dll.gz
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Blazor.HttpClient.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\build-gz\KE1ETc1+.gz
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\RazorDeclaration\Pages\Details.razor.g.cs
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\Razor\Pages\Details.razor.g.cs

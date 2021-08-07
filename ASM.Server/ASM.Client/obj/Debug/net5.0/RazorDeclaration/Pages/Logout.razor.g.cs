@@ -110,7 +110,6 @@ using System.ComponentModel.DataAnnotations;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/logout")]
     public partial class Logout : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -120,7 +119,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 12 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Logout.razor"
+#line 11 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Logout.razor"
        
     private bool loading;
     private string error;
@@ -132,8 +131,8 @@ using System.ComponentModel.DataAnnotations;
     protected override async Task OnInitializedAsync()
     {
         sessionStorage.Clear();
-        await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/");
+        //await JSRuntime.InvokeAsync<object>("refreshMenu", "");
+        NavigationManager.NavigateTo("/", true);
     }
 
 #line default

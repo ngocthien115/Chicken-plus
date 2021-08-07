@@ -50,6 +50,10 @@ a, .btn-link {
     }
 
 
-.content{
-    top:20px;
+.content {
+    top: 20px;
+}
+
+.menu {
+    height: 55px;
 }

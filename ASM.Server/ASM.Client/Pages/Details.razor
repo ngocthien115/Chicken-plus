@@ -1,0 +1,132 @@
+﻿@page "/details/{id}"
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject HttpClient client
+@using Newtonsoft.Json
+
+    <style>
+        .img-detail {
+            width: 100%;
+            height: 350px;
+        }
+
+        .tensp {
+            font-size: 24px;
+            margin: 10px 0 40px 0;
+        }
+
+        .gia {
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+
+<h3>Details</h3>
+
+<div class="w-75 m-auto mt-5 border border-1 p-3">
+    <div class="row">
+        <div class="col-4">
+            <img class="img-detail" src="@imgUrl" />
+        </div>
+        <div class="col-8 p-4 border border-1">
+            <div class="tensp">@monan.Name</div>
+            <div class="phanloai">Loại: @monan.Phanloai</div>
+            <div class="gia">Giá : @monan.Gia</div>
+            <div class="control">
+                <button class="btn btn-primary">Mua ngay</button>
+                <button class="btn btn-info" onmouseup="addCart(@monan.MonAnID);" @onclick="AddCart">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </div>
+    <div class="row bottom-field">
+        <hr class="mt-4">
+        <p class="font-italic font-weight-bold">Mô tả món ăn</p>
+        <p>@monan.Mota</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+    public MonAn monan = new MonAn();
+    public List<MonAn> monans;
+    string imgUrl;
+    protected override async Task OnInitializedAsync()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        monan = await client.GetJsonAsync<MonAn>(apiUrl + "monan/"+ id);
+        monans = await client.GetJsonAsync<List<MonAn>>(apiUrl + "monan");
+        imgUrl += monan.Hinh;
+    }
+
+    private void AddCart()
+    {
+        var cart = sessionStorage.GetItem<string>("Cart");//get key cart
+        if (cart == null)
+        {
+
+            var monAn = monans.Where(u => u.MonAnID == monan.MonAnID).FirstOrDefault();
+            List<CartItem> listCart = new List<CartItem>()
+                {
+                    new CartItem
+                    {
+                        MonAn = monAn,
+                        Quantity = 1,
+                        Sotien= monAn.Gia
+                    }
+            };
+
+            ASM.Share.Models.Cart giohang = new ASM.Share.Models.Cart()
+            {
+                ListViewCart = listCart,
+                Tongtien = Tinhtien(listCart)
+            };
+            sessionStorage.SetItem("Cart", JsonConvert.SerializeObject(giohang));
+        }
+        else
+        {
+            var monAn = monans.Where(u => u.MonAnID == monan.MonAnID).FirstOrDefault();
+
+            ASM.Share.Models.Cart giohang = JsonConvert.DeserializeObject<ASM.Share.Models.Cart>(cart);
+            bool check = true;
+            for (int i = 0; i < giohang.ListViewCart.Count; i++)
+            {
+                if (giohang.ListViewCart[i].MonAn.MonAnID == monan.MonAnID)
+                {
+                    giohang.ListViewCart[i].Quantity++;
+                    giohang.ListViewCart[i].Sotien = monAn.Gia * giohang.ListViewCart[i].Quantity;
+                    check = false;
+                }
+            }
+
+            if (check)
+            {
+                giohang.ListViewCart.Add(new CartItem
+                {
+                    MonAn = monAn,
+                    Quantity = 1,
+                    Sotien = monAn.Gia * 1
+                });
+            }
+            giohang.Tongtien = Tinhtien(giohang.ListViewCart);
+            sessionStorage.SetItem("Cart", JsonConvert.SerializeObject(giohang));
+        }
+    }
+
+    private double Tinhtien(List<CartItem> listCart)
+    {
+        double tongtien = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                tongtien += listCart[i].Sotien;
+            }
+        }
+        return tongtien;
+    }
+}
