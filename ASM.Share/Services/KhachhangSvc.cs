@@ -79,13 +79,17 @@ namespace ASM.Share.Models
                 _khachhang.Ngaysinh = khachhang.Ngaysinh;
                 _khachhang.PhoneNumber = khachhang.PhoneNumber;
                 _khachhang.EmailAddress = khachhang.EmailAddress;
-                if (_khachhang.Password != null)
+                if (khachhang.Password == "")
                 {
-                    khachhang.Password = _mahoaHelper.Mahoa(khachhang.Password);
-                    _khachhang.Password = khachhang.Password;
-                    _khachhang.ConfirmPassword = khachhang.Password;
+                    _khachhang.Password = _khachhang.Password;
+                    _khachhang.ConfirmPassword = _khachhang.ConfirmPassword;
                 }
-                //_khachhang.Password = khachhang.Password;
+                if (khachhang.Password != null && khachhang.Password != "")
+                {
+                    _khachhang.Password = _mahoaHelper.Mahoa(khachhang.Password);
+                    _khachhang.ConfirmPassword = _khachhang.Password;
+                }
+                
                 _khachhang.Mota = khachhang.Mota;
 
                 _context.Update(_khachhang);

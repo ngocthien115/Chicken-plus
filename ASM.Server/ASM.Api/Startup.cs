@@ -95,10 +95,11 @@ namespace ASM.Api
 
 
             services.AddCors(options => options.AddPolicy(
-                "_mypolicy", builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
+                "_mypolicy", builder =>
+                builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+
                 )
              );
 
@@ -122,6 +123,7 @@ namespace ASM.Api
 
             app.UseCors();
             app.UseCors("_mypolicy");
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();

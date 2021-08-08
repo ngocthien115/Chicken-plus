@@ -1,0 +1,157 @@
+﻿@page "/register/{id}"
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject HttpClient client
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject NavigationManager NavigationManager
+@using Newtonsoft.Json;
+@using System.Net.Http.Headers
+
+
+    <div class="w-50 m-auto">
+        <EditForm Model="@khachhang" OnSubmit="CheckRegister">
+            <DataAnnotationsValidator />
+            <h3 class="text-center">@tieude</h3>
+            <input type="hidden" value="@khachhang.KhachhangID" />
+            <div class="input-group flex-nowrap mt-3">
+                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Họ tên"
+                       aria-describedby="addon-wrapping" @bind="@khachhang.FullName" />
+                <ValidationMessage For="@(() => khachhang.FullName)" />
+            </div>
+            <div class="input-group flex-nowrap mt-3">
+                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="E-mail"
+                       aria-describedby="addon-wrapping" @bind="@khachhang.EmailAddress" />
+                <ValidationMessage For="@(() => khachhang.EmailAddress)" />
+            </div>
+            <div class="input-group flex-nowrap mt-3">
+                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                <input type="date" class="form-control" placeholder="Ngày sinh" aria-label="email"
+                       aria-describedby="addon-wrapping" @bind="@khachhang.Ngaysinh" />
+                <ValidationMessage For="@(() => khachhang.Ngaysinh)" />
+            </div>
+            <div class="input-group flex-nowrap mt-3">
+                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="So dien thoai" aria-label="email"
+                       aria-describedby="addon-wrapping" @bind="@khachhang.PhoneNumber" />
+                <ValidationMessage For="@(() => khachhang.PhoneNumber)" />
+            </div>
+            @if (khachhang.KhachhangID == 0)
+            {
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                    <input type="password" class="form-control" placeholder="Mật khẩu" aria-label="email"
+                           aria-describedby="addon-wrapping" @bind="@khachhang.Password" />
+                    <ValidationMessage For="@(() => khachhang.Password)" />
+                </div>
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                    <input type="password" class="form-control" placeholder="Xác nhận mật khẩu" aria-label="email"
+                           aria-describedby="addon-wrapping" @bind="@khachhang.ConfirmPassword" />
+                    <ValidationMessage For="@(() => khachhang.ConfirmPassword)" />
+                </div>
+            }
+
+            <div class="mt-3">
+                <input type="submit" class="btn btn-primary" value="@nut">
+            </div>
+        </EditForm>
+    </div>
+
+@code{
+    [Parameter]
+    public string id { get; set; }
+    public string tieude = "";
+    public string nut = "";
+    public string apiUrl = "";
+    Khachhang khachhang = null;
+    protected override async Task OnInitializedAsync()
+    {
+        if (id == "0")
+        {
+            tieude = "Đăng ký";
+            nut = "Đăng ký";
+            khachhang = new Khachhang();
+        }
+        else
+        {
+            khachhang = new Khachhang();
+            tieude = "Chỉnh sửa thông tin";
+            nut = "Chỉnh sửa";
+            apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            var id = sessionStorage.GetItem<string>("KhachhangId");
+            using (client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                var strJson = await client.GetStringAsync(apiUrl + "khachhang/" + id);
+                khachhang = JsonConvert.DeserializeObject<Khachhang>(strJson);
+            }
+        }
+    }
+    public async Task CheckRegister()
+    {
+        apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        if (khachhang.KhachhangID == 0)
+        {
+            using (client = new HttpClient())
+            {
+                khachhang.Mota = "";
+                StringContent content = new StringContent(JsonConvert.SerializeObject(khachhang), System.Text.Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "khachhang", content);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    Console.WriteLine("Lỗi khi gọi API");
+                }
+                else
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse == "-1")
+                    {
+                        Console.WriteLine("Thất bại");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Thành công");
+                    }
+                }
+            }
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            using (client = new HttpClient())
+            {
+                khachhang.Mota = "";
+                khachhang.Password = "";
+                khachhang.ConfirmPassword = "";
+                var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+                var accessToken = sessionStorage.GetItem<string>("AccessToken");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(khachhang), System.Text.Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                HttpResponseMessage response = await client.PutAsync(apiUrl + $"khachhang/{khachhang.KhachhangID}", content);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    Console.WriteLine("Lỗi khi gọi API");
+                }
+                else
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse == "-1")
+                    {
+                        Console.WriteLine("Thất bại");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Thành công");
+                    }
+                }
+            }
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}

@@ -2,6 +2,8 @@
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject HttpClient client
+@inject NavigationManager nav
+@inject ICartService CartService
 
 <style>
     * {
@@ -83,4 +85,6 @@ else
         </div>
     }
 </div>
+<Pagination TotalPagesQuantity="totalPageQuantity" CurrentPage="currentPage" Radius="2" 
+            SelectedPage="SelectedPage"/>
 }

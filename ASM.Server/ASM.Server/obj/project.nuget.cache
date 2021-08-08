@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OuGbq8HgJbEK3yM6n7vh9SHTvyFsAPlQ/1rnZFb2uhURoaxiM1LNDuROuhE8lIBcRDKEXs1VWhFtBgGMUsU0Yg==",
+  "dgSpecHash": "CbxyutSmCA8n9iycxV9LKgGGQWsqq85jMrfeZ2X1hV5rueroR0lylJVMlCqdO1dkjq686LKsFph5Qy1JbEEsIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nthie\\Downloads\\ASM\\ASM.Server\\ASM.Server\\ASM.Server.csproj",
   "expectedPackageFiles": [
@@ -88,7 +88,8 @@
     "C:\\Users\\nthie\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.utils\\5.0.2\\microsoft.visualstudio.web.codegeneration.utils.5.0.2.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\5.0.2\\microsoft.visualstudio.web.codegenerators.mvc.5.0.2.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\nthie\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\nthie\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0-preview.6.21352.12\\microsoft.win32.systemevents.6.0.0-preview.6.21352.12.nupkg.sha512",
+    "C:\\Users\\nthie\\.nuget\\packages\\netstandardbarcode\\1.0.2\\netstandardbarcode.1.0.2.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
@@ -112,7 +113,7 @@
     "C:\\Users\\nthie\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
-    "C:\\Users\\nthie\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
+    "C:\\Users\\nthie\\.nuget\\packages\\system.drawing.common\\6.0.0-preview.6.21352.12\\system.drawing.common.6.0.0-preview.6.21352.12.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\system.globalization.extensions\\4.3.0\\system.globalization.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\nthie\\.nuget\\packages\\system.identitymodel.tokens.jwt\\5.6.0\\system.identitymodel.tokens.jwt.5.6.0.nupkg.sha512",

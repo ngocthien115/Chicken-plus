@@ -1,0 +1,42 @@
+﻿@page "/donhangchitiet/{id}"
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject HttpClient client
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+
+@if (details == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <h3>ĐƠN HÀNG CHI TIẾT</h3>
+    <table class="table mt-3 text-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Tên món ăn</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in details)
+            {
+            <tr>
+                <td>@item.donhang.KhachhangID</td>
+                <td>@item.monan.Name</td>
+                @{
+                    temp = imgUrl + item.monan.Hinh;
+                }
+                <td><img src="@temp" style="width:100px" /></td>
+                <td>@item.monan.Gia</td>
+                <td>@item.donhangchitiet.Soluong</td>
+                <td>@item.donhangchitiet.Thanhtien</td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+}

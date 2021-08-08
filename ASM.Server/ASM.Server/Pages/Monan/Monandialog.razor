@@ -6,6 +6,9 @@
 @inject ASM.Share.Models.IMonAnSvc _monanSvc
 @inject NavigationManager NavigationManager
 @inject IWebHostEnvironment env
+@using Net.ConnectCode.Barcode;
+
+
 
 <div class="w-75 m-auto">
     <h3>@Tieude</h3>
@@ -56,12 +59,20 @@
         <button type="submit" class="btn btn-primary">Lưu</button>
         <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Thoát" />
     </EditForm>
+    <hr />
+    <p>Barcode of product</p>
+    <hr />
+    <div id="barcode">@barcode</div>
+    <div id="barcode_text">@barcode_text</div>
+    <hr />
 </div>
+
 
 @code {
     [Parameter]
     public string id { get; set; }
-
+    string barcode;
+    string barcode_text;
     IReadOnlyList<IBrowserFile> selectedFiles;
     MonAn monan = new MonAn();
     private string Tieude = "";
@@ -77,6 +88,16 @@
         {
             Tieude = "SỬA MÓN ĂN";
             monan = _monanSvc.GetMonAn(int.Parse(id));
+            var data = monan.Name;
+
+            BarcodeFonts bcf = new BarcodeFonts();
+            bcf.BarcodeType = BarcodeFonts.BarcodeEnum.Code39;
+            bcf.CheckDigit = BarcodeFonts.YesNoEnum.Yes;
+            bcf.Data = monan.MonAnID.ToString();
+            bcf.encode();
+            barcode = bcf.EncodedData;
+            barcode_text = bcf.HumanText;
+
         }
     }
     private async void SubmitForm()
@@ -101,7 +122,7 @@
                 var file = selectedFiles[0];
                 string filePath = dirpath + @"\" + file.Name;
 
-                
+
                 Stream stream = file.OpenReadStream(1000000);
                 //var path = $"{env.WebRootPath}\\images\\monan\\{file.Name}";
                 FileStream fs = File.Create(filePath);

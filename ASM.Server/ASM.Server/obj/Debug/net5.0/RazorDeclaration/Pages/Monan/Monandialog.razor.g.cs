@@ -109,6 +109,13 @@ using System;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\Pages\Monan\Monandialog.razor"
+using Net.ConnectCode.Barcode;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/monandialog/{id}")]
     public partial class Monandialog : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -118,11 +125,12 @@ using System;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\Pages\Monan\Monandialog.razor"
+#line 71 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\Pages\Monan\Monandialog.razor"
        
     [Parameter]
     public string id { get; set; }
-
+    string barcode;
+    string barcode_text;
     IReadOnlyList<IBrowserFile> selectedFiles;
     MonAn monan = new MonAn();
     private string Tieude = "";
@@ -138,6 +146,16 @@ using System;
         {
             Tieude = "SỬA MÓN ĂN";
             monan = _monanSvc.GetMonAn(int.Parse(id));
+            var data = monan.Name;
+
+            BarcodeFonts bcf = new BarcodeFonts();
+            bcf.BarcodeType = BarcodeFonts.BarcodeEnum.Code39;
+            bcf.CheckDigit = BarcodeFonts.YesNoEnum.Yes;
+            bcf.Data = monan.MonAnID.ToString();
+            bcf.encode();
+            barcode = bcf.EncodedData;
+            barcode_text = bcf.HumanText;
+
         }
     }
     private async void SubmitForm()
@@ -162,7 +180,7 @@ using System;
                 var file = selectedFiles[0];
                 string filePath = dirpath + @"\" + file.Name;
 
-                
+
                 Stream stream = file.OpenReadStream(1000000);
                 //var path = $"{env.WebRootPath}\\images\\monan\\{file.Name}";
                 FileStream fs = File.Create(filePath);

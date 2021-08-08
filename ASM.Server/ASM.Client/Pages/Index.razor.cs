@@ -6,93 +6,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
+using System.IO;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace ASM.Client.Pages
 {
     public partial class Index
     {
-
         protected string imgUrl = "";
         protected string temp = "";
         public List<MonAn> monans;
 
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadData();
+        private int totalPageQuantity;
+        private int currentPage = 1;
 
+        private async Task SelectedPage(int page)
+        {
+            currentPage = page;
+            await LoadData(page);
         }
-        protected async Task LoadData()
+
+        protected async Task LoadData(int page = 1, int quantityPerPage = 10)
         {
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-            monans = await client.GetJsonAsync<List<MonAn>>(apiUrl + "monan");
-        }
-        private void AddCart(int id)
-        {
-            var cart = sessionStorage.GetItem<string>("Cart");//get key cart
-            if (cart == null)
+            HttpResponseMessage httpResponse = await client.GetAsync(apiUrl + $"monan?page={page}&quantityPerPage={quantityPerPage}");
+            if (httpResponse.IsSuccessStatusCode)
             {
+                var re = httpResponse;
+                var headers = re.Headers;
 
-                var monAn = monans.Where(u => u.MonAnID == id).FirstOrDefault();
-                List<CartItem> listCart = new List<CartItem>()
+                if (headers.Contains("soluongtrang"))
                 {
-                    new CartItem
-                    {
-                        MonAn = monAn,
-                        Quantity = 1,
-                        Sotien= monAn.Gia
-                    }
-            };
+                    string soluongtrang = headers.GetValues("soluongtrang").First();
+                    Console.WriteLine("da tim thay");
+                }
+                else
+                {
+                    Console.WriteLine("Khong tim thay");
+                }
 
-                ASM.Share.Models.Cart giohang = new ASM.Share.Models.Cart()
-                {
-                    ListViewCart = listCart,
-                    Tongtien = Tinhtien(listCart)
-                };
-                sessionStorage.SetItem("Cart", JsonConvert.SerializeObject(giohang));
+                //totalPageQuantity = int.Parse(httpResponse.Headers.GetValues("soluongtrang").FirstOrDefault());
+                var responseString = await httpResponse.Content.ReadAsStringAsync();
+                Console.WriteLine(responseString);
+                monans = System.Text.Json.JsonSerializer.Deserialize<List<MonAn>>(responseString,
+                    new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             else
             {
-                var monAn = monans.Where(u => u.MonAnID == id).FirstOrDefault();
-
-                ASM.Share.Models.Cart giohang = JsonConvert.DeserializeObject<ASM.Share.Models.Cart>(cart);
-                bool check = true;
-                for (int i = 0; i < giohang.ListViewCart.Count; i++)
-                {
-                    if (giohang.ListViewCart[i].MonAn.MonAnID == id)
-                    {
-                        giohang.ListViewCart[i].Quantity++;
-                        giohang.ListViewCart[i].Sotien = monAn.Gia * giohang.ListViewCart[i].Quantity;
-                        check = false;
-                    }
-                }
-
-                if (check)
-                {
-                    giohang.ListViewCart.Add(new CartItem
-                    {
-                        MonAn = monAn,
-                        Quantity = 1,
-                        Sotien = monAn.Gia * 1
-                    });
-                }
-                giohang.Tongtien = Tinhtien(giohang.ListViewCart);
-                sessionStorage.SetItem("Cart", JsonConvert.SerializeObject(giohang));
+                //handle error
             }
         }
-
-        private double Tinhtien(List<CartItem> listCart)
+        protected override async Task OnInitializedAsync()
         {
-            double tongtien = 0;
-            if (listCart != null)
-            {
-                for (int i = 0; i < listCart.Count; i++)
-                {
-                    tongtien += listCart[i].Sotien;
-                }
-            }
-            return tongtien;
+            await LoadData();
+        }
+        
+
+        private void AddCart(int id)
+        {
+            CartService.AddToCart(monans, id);
         }
     }
 }

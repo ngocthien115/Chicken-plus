@@ -29,9 +29,9 @@ namespace ASM.Api.Controllers
 
         // GET api/<DonhangController>/5
         [HttpGet("{id}")]
-        public Donhang Get(int id)
+        public IEnumerable<Donhang> Get(int id)
         {
-            return _donhangSvc.GetDonhang(id);
+            return _donhangSvc.GetDonhangbyKhachhang(id);
         }
 
         // POST api/<DonhangController>

@@ -1,0 +1,54 @@
+﻿@page "/history/{id}"
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject HttpClient client
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+
+<h3>Đơn hàng</h3>
+@if (donhangs == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <h3>DANH SÁCH ĐƠN HÀNG</h3>
+    <table class="table text-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Khách hàng</th>
+                <th scope="col">Ngày đặt</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in donhangs)
+            {
+                <tr>
+                    <td>@item.DonhangID</td>
+                    <td>@item.KhachhangID</td>
+                    <td>@item.Ngaydat</td>
+                    <td>@item.Tongtien</td>
+                    <td>
+                        @if (item.TrangthaiDonhang == TrangthaiDonhang.Danggiao)
+                        {
+                            <span>Đang giao</span>
+                        }
+                        else if (item.TrangthaiDonhang == TrangthaiDonhang.Dagiao)
+                        {
+                            <span>Đã giao</span>
+                        }
+                        else
+                        {
+                            <span>Mới đặt</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-warning text-white" href="/donhangchitiet/@item.DonhangID"><i class="fas fa-info"></i> Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

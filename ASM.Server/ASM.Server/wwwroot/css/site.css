@@ -48,3 +48,26 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+@font-face {
+    font-family: CCode39;
+    src: url("/fonts/ConnectCode39.woff") format('woff')
+}
+
+#barcode {
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-family: 'CCode39', sans-serif;
+    text-align: center;
+    font-size: 32px
+}
+
+#barcode_text {
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 24px
+}

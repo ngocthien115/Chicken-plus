@@ -81,6 +81,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "NETStandardBarcode": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0-preview.6.21352.12, )"
             }
           },
           "imports": [

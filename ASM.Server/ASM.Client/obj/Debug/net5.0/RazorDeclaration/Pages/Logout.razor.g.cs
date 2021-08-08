@@ -90,6 +90,13 @@ using ASM.Share.Models;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\_Imports.razor"
+using ASM.Client.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Logout.razor"
 using System.Web;
 

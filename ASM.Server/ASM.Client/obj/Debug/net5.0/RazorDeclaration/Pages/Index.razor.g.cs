@@ -89,6 +89,13 @@ using ASM.Share.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\_Imports.razor"
+using ASM.Client.Services;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -97,6 +104,8 @@ using ASM.Share.Models;
         {
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICartService CartService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager nav { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient client { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }

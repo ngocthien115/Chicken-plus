@@ -28,3 +28,8 @@ function clearCart() {
 //        $("#navLogin").html(html);
 //    }
 //}
+
+function mahoapwd(oldpwd) {
+    var md5Hash = CryptoJS.MD5(oldpwd);
+    return md5Hash.toString();
+}

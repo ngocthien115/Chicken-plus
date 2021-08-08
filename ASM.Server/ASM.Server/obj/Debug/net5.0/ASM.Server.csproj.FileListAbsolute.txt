@@ -380,3 +380,9 @@ C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\obj\Debug\net5.0\RazorDeclara
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\obj\Debug\net5.0\Razor\Pages\Donhang\Donhangchitiet.razor.g.cs
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\obj\Debug\net5.0\RazorDeclaration\Pages\Nguoidung\Doimatkhau.razor.g.cs
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\obj\Debug\net5.0\Razor\Pages\Nguoidung\Doimatkhau.razor.g.cs
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Server\bin\Debug\net5.0\NETStandardBarcode.dll
