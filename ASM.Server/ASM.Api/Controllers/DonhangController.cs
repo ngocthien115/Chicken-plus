@@ -16,9 +16,12 @@ namespace ASM.Api.Controllers
     public class DonhangController : ControllerBase
     {
         private IDonhangSvc _donhangSvc;
-        public DonhangController(IDonhangSvc donhangSvc)
+        private readonly IDonhangChitietSvc _donhangchitietSvc;
+
+        public DonhangController(IDonhangSvc donhangSvc, IDonhangChitietSvc donhangchitietSvc)
         {
             _donhangSvc = donhangSvc;
+            _donhangchitietSvc = donhangchitietSvc;
         }
         // GET: api/<DonhangController>
         [HttpGet]
@@ -36,12 +39,37 @@ namespace ASM.Api.Controllers
 
         // POST api/<DonhangController>
         [HttpPost]
-        public void Post([FromBody] Donhang donhang)
+        public async Task<ActionResult<int>> Post(Cart cart)
         {
-            if (donhang != null)
+            try
             {
-                _donhangSvc.AddDonhang(donhang);
+                var donhang = new Donhang()
+                {
+                    TrangthaiDonhang = TrangthaiDonhang.Moidat,
+                    KhachhangID = cart.KhanghangId,
+                    Tongtien = cart.Tongtien,
+                    Ngaydat = DateTime.Now,
+                    Ghichu = ""
+                };
+                int donhangid = _donhangSvc.AddDonhang(donhang);
+                for (int i = 0; i < cart.ListViewCart.Count; i++)
+                {
+                    var dhct = new DonhangChitiet()
+                    {
+                        DonhangID = donhangid,
+                        MonAnID = cart.ListViewCart[i].MonAn.MonAnID,
+                        Soluong = cart.ListViewCart[i].Quantity,
+                        Thanhtien = cart.ListViewCart[i].MonAn.Gia * cart.ListViewCart[i].Quantity,
+                        Ghichu = ""
+                    };
+                    _donhangchitietSvc.AddDonhangChitietSvc(dhct);
+                }
             }
+            catch (Exception)
+            {
+                BadRequest(-1);
+            }
+            return Ok(1);
         }
     }
 }

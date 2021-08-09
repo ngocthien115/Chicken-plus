@@ -17,14 +17,15 @@ namespace ASM.Client.Pages
         protected string imgUrl = "";
         protected string temp = "";
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             emailAddress = sessionStorage.GetItem<string>("Email");
             var cart = sessionStorage.GetItem<string>("Cart");
 
+            Console.WriteLine(cart);
             if (cart == null)
             {
-                giohang = new Share.Models.Cart();
+                giohang = new ASM.Share.Models.Cart();
             }
             else
             {
@@ -49,19 +50,31 @@ namespace ASM.Client.Pages
         
         private async Task OrderCart()
         {
-        //    var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        //    imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        //    var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
-        //    var token = sessionStorage.GetItem<string>("AccessToken");
-
-        //    giohang.KhanghangId = int.Parse(khachhangId);
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        //        StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), Encoding.UTF8, "application/json");
-        //        client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-        //        HttpResponseMessage response = await client.PostAsync(apiUrl + "donhang", content);
-        //    }
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+            var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
+            var token = sessionStorage.GetItem<string>("AccessToken");
+            var cart = sessionStorage.GetItem<string>("Cart");
+            giohang = JsonConvert.DeserializeObject<ASM.Share.Models.Cart>(cart);
+            giohang.KhanghangId = int.Parse(khachhangId);
+            
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "donhang", content);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    Console.WriteLine("That bai: " + response.StatusCode);
+                }
+                else
+                {
+                    Console.WriteLine("Thanh cong");
+                    sessionStorage.RemoveItem("Cart");
+                    NavigationManager.NavigateTo("/");
+                }
+            }
         }
         private double TinhTien(List<CartItem> listCart)
         {
