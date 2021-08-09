@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using ASM.Client.Pages;
-using ASM.Client.Services;
 
 namespace ASM.Client
 {
@@ -25,8 +24,6 @@ namespace ASM.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddBlazoredSessionStorage();
-
-            builder.Services.AddScoped<ICartService, CartService>();
 
             await builder.Build().RunAsync();
         }

@@ -90,20 +90,13 @@ using ASM.Share.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\_Imports.razor"
-using ASM.Client.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
+#line 3 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
 using Newtonsoft.Json;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class WebLoginPartial : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
+    public partial class WebLoginPartial : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -111,7 +104,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 85 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
+#line 83 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
       
     string id;
     string count = "0";
@@ -120,20 +113,9 @@ using Newtonsoft.Json;
     {
         id = sessionStorage.GetItem<string>("KhachhangId");
         emailAddress = sessionStorage.GetItem<string>("Email");
-        CartService.OnChange += StateHasChanged;
     }
 
-    public void Dispose()
-    {
-        CartService.OnChange -= StateHasChanged;
-    }
-
-    private int GetProductCount()
-    {
-        var cart = sessionStorage.GetItem<List<Cart>>("Cart");
-        return cart != null ? cart.Count : 0;
-    }
-
+    
     protected void Logout()
     {
         sessionStorage.RemoveItem("AccessToken");
@@ -144,7 +126,6 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Services.ICartService CartService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }

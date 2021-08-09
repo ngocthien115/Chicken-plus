@@ -86,13 +86,6 @@ using ASM.Share.Models;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 12 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\_Imports.razor"
-using ASM.Client.Services;
-
-#line default
-#line hidden
-#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
