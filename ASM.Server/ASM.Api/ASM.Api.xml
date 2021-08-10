@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.Api</name>
+    </assembly>
+    <members>
+        <member name="M:ASM.Api.Controllers.DonhangchitietController.Get(System.Int32)">
+            <summary>
+            Hiển thị thông tin chi tiết của 1 đơn hàng
+            </summary>
+            <param name="id"></param>
+            <returns>Thông tin của 1 đơn hàng</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.DonhangchitietController.Post(ASM.Share.Models.DonhangChitiet)">
+            <summary>
+            Tạo mới 1 chi tiết đơn hàng
+            </summary>
+            <remarks>
+            Sample request:
+                
+                 POST api/donhangchitiet
+                 {
+                     "DonhangID" : "1",
+                     "MonAnID" : "1",
+                     "SoLuong" : 3,
+                     "Thanhtien" : 35000,
+                     "Ghichu" : ""
+                 }
+            </remarks>
+            <param name="donhangchitiet"></param>
+            <response code="200">A newly is created</response>
+            <response code="401">Please provider token to see</response>
+        </member>
+        <member name="M:ASM.Api.Controllers.DonhangController.Get">
+            <summary>
+            Lấy danh sách toàn bộ các đơn hàng
+            </summary>
+            <returns>Danh sách đơn hàng</returns>
+            <response code="200">List is show</response>
+        </member>
+        <member name="M:ASM.Api.Controllers.DonhangController.Get(System.Int32)">
+            <summary>
+            Lấy thông tin của 1 đơn hàng
+            </summary>
+            <param name="id"></param>
+            <returns>Thông tin 1 đơn hàng</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.DonhangController.Post(ASM.Share.Models.Cart)">
+            <summary>
+            Thêm 1 đơn hàng mới
+            </summary>
+            <remarks>
+            Sample request:
+            
+                    POST api/donhang
+                    {
+                        "TrangthaiDonHang" : "moidat",
+                        "KhachhangID" : "1",
+                        "Tongtien" : 135000,
+                        "Ngaydat" : "10/8/2021",
+                        "Ghichu" : "",
+                        "MonAnID" : "1",
+                        "SoLuong" : "1",
+                        "Thanhtien" : 17000,
+                        "Ghichu" : ""
+                    }
+            </remarks>
+            <param name="cart"></param>
+            <returns>Thêm mới 1 đơn hàng</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.KhachhangController.Get">
+            <summary>
+            Lấy ra danh sách khách hàng
+            </summary>
+            <returns>Danh sách khách hàng</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.KhachhangController.Get(System.Int32)">
+            <summary>
+            Trả về thông tin của 1 khách hàng theo id
+            </summary>
+            <param name="id"></param>
+            <returns>Thông tin của 1 khách hàng</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.KhachhangController.Post(ASM.Share.Models.Khachhang)">
+            <summary>
+            Thêm mới 1 khách hàng
+            </summary>
+            <remarks>
+            Sample request:
+            
+                    POST api/khachhang
+                    {
+                        "FullName" : "Nguyen Van A",
+                        "Ngaydat" : "10/8/2021",
+                        "PhoneNumber" : "0123456789",
+                        "EmailAddress" : "nguyena@gmail.com",
+                        "Password" : "1",
+                        "ConfirmPassword" : "1"
+                    }
+            </remarks>
+            <param name="khachhang"></param>
+            <returns>Thông tin khách hàng</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.KhachhangController.Put(System.Int32,ASM.Share.Models.Khachhang)">
+            <summary>
+            Chỉnh sửa thông tin của khách hàng
+            </summary>
+            <remarks>
+            Sample request:
+            
+                PUT api/khachhang/1
+                {
+                    "FullName" : "Nguyen Van A",
+                    "Ngaydat" : "10/8/2021",
+                    "PhoneNumber" : "0123456789",
+                    "EmailAddress" : "nguyena@gmail.com",
+                    "Password" : "1",
+                    "ConfirmPassword" : "1"
+                }
+            </remarks>
+            <param name="id"></param>
+            <param name="khachhang"></param>
+        </member>
+        <member name="M:ASM.Api.Controllers.MonAnController.Get(ASM.Share.Models.ViewModels.Pagination)">
+            <summary>
+            Danh sách các món ăn có phân có phân trang
+            </summary>
+            <remarks>
+            Sample request:
+            
+                GET api/monan
+                    Params  - page:1
+                            - quantityperpage:5
+                        
+            </remarks>
+            <param name="pagination"></param>
+            <returns>Danh sách món ăn trong trang</returns>
+            <response code="200">Return a list monan</response>
+        </member>
+        <member name="M:ASM.Api.Controllers.MonAnController.Get(System.Int32)">
+            <summary>
+            Thông tin của 1 món ăn theo id
+            </summary>
+            <param name="id"></param>
+            <returns>Thông tin món ăn theo id</returns>
+        </member>
+        <member name="M:ASM.Api.Controllers.TokenController.Post(ASM.Share.Models.ViewWebLogin)">
+            <summary>
+            Trả về token dùng để xác thực các request
+            </summary>
+            <remarks>
+            Sample request:
+                POST api/token
+                    {
+                        "email":"minhtran@gmail.com",
+                        "password":"1"
+                    }
+            </remarks>
+            <param name="viewWebLogin"></param>
+            <returns>Token để gửi các request</returns>
+        </member>
+        <member name="M:ASM.Api.Helpers.HttpContextExtensions.InsertPaginationParameterInResponse``1(Microsoft.AspNetCore.Http.HttpContext,System.Linq.IQueryable{``0},System.Int32)">
+            <summary>
+            Class phân trang
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="httpContext"></param>
+            <param name="queryable"></param>
+            <param name="recordPerPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ASM.Api.Helpers.IQueryableExtensions.Paginate``1(System.Linq.IQueryable{``0},ASM.Share.Models.ViewModels.Pagination)">
+            <summary>
+            Class phân trang
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryable"></param>
+            <param name="pagition"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -23,6 +23,14 @@ namespace ASM.Api.Controllers
             _donhangSvc = donhangSvc;
             _donhangchitietSvc = donhangchitietSvc;
         }
+
+        /// <summary>
+        /// Lấy danh sách toàn bộ các đơn hàng
+        /// </summary>
+        /// <returns>Danh sách đơn hàng</returns>
+        /// <response code="200">List is show</response>
+        /// <response code="201">List is show</response>
+        /// <response code="401">Please provider token to send request</response>
         // GET: api/<DonhangController>
         [HttpGet]
         public IEnumerable<Donhang> Get()
@@ -30,6 +38,11 @@ namespace ASM.Api.Controllers
             return _donhangSvc.GetDonhangAll();
         }
 
+        /// <summary>
+        /// Lấy thông tin của 1 đơn hàng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Thông tin 1 đơn hàng</returns>
         // GET api/<DonhangController>/5
         [HttpGet("{id}")]
         public IEnumerable<Donhang> Get(int id)
@@ -37,6 +50,30 @@ namespace ASM.Api.Controllers
             return _donhangSvc.GetDonhangbyKhachhang(id);
         }
 
+        /// <summary>
+        /// Thêm 1 đơn hàng mới
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///         POST api/donhang
+        ///         {
+        ///             "TrangthaiDonHang" : "moidat",
+        ///             "KhachhangID" : "1",
+        ///             "Tongtien" : 135000,
+        ///             "Ngaydat" : "10/8/2021",
+        ///             "Ghichu" : "",
+        ///             "MonAnID" : "1",
+        ///             "SoLuong" : "1",
+        ///             "Thanhtien" : 17000,
+        ///             "Ghichu" : ""
+        ///         }
+        /// </remarks>
+        /// <param name="cart"></param>
+        /// <returns>Thêm mới 1 đơn hàng</returns>
+        /// <response code="200">A new donhang id created</response>
+        /// <response code="201">A new donhang id created</response>
+        /// <response code="401">Please provider token to send request</response>
         // POST api/<DonhangController>
         [HttpPost]
         public async Task<ActionResult<int>> Post(Cart cart)

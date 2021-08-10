@@ -26,6 +26,20 @@ namespace ASM.Api.Controllers
             _context = data;
             _monanSvc = svc;
         }
+        /// <summary>
+        /// Danh sách các món ăn có phân có phân trang
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET api/monan
+        ///         Params  - page:1
+        ///                 - quantityperpage:5
+        ///             
+        /// </remarks>
+        /// <param name="pagination"></param>
+        /// <returns>Danh sách món ăn trong trang</returns>
+        /// <response code="200">Return a list monan</response>
         // GET: api/<MonAnController>
         [HttpGet]
         public async Task<List<MonAn>> Get([FromQuery]Pagination pagination)
@@ -41,6 +55,11 @@ namespace ASM.Api.Controllers
 
         }
 
+        /// <summary>
+        /// Thông tin của 1 món ăn theo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Thông tin món ăn theo id</returns>
         // GET api/<MonAnController>/5
         [HttpGet("{id}")]
         public MonAn Get(int id)

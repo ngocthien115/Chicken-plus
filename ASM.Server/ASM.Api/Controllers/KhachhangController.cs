@@ -21,23 +21,50 @@ namespace ASM.Api.Controllers
             _khachhangSvc = khachhangSvc;
         }
 
-        // GET: api/<KhachhangController>
-        //[HttpGet]
-        //public IEnumerable<Khachhang> Get()
-        //{
-        //    return _khachhangSvc.GetKhachhangAll();
-        //}
-
-        // GET api/<KhachhangController>/5
+        /// <summary>
+        /// Lấy ra danh sách khách hàng
+        /// </summary>
+        /// <returns>Danh sách khách hàng</returns>
+        //GET: api/<KhachhangController>
+        [HttpGet]
+        public IEnumerable<Khachhang> Get()
+        {
+            return _khachhangSvc.GetKhachhangAll();
+        }
         
+        /// <summary>
+        /// Trả về thông tin của 1 khách hàng theo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Thông tin của 1 khách hàng</returns>
+        //GET api/<KhachhangController>/5
         [HttpGet("{id}")]
         public Khachhang Get(int id)
         {
             return _khachhangSvc.GetKhachhang(id);
         }
 
-        [AllowAnonymous]
+        /// <summary>
+        /// Thêm mới 1 khách hàng
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///         POST api/khachhang
+        ///         {
+        ///             "FullName" : "Nguyen Van A",
+        ///             "Ngaydat" : "10/8/2021",
+        ///             "PhoneNumber" : "0123456789",
+        ///             "EmailAddress" : "nguyena@gmail.com",
+        ///             "Password" : "1",
+        ///             "ConfirmPassword" : "1"
+        ///         }
+        /// </remarks>
+        /// <param name="khachhang"></param>
+        /// <returns>Thông tin khách hàng</returns>
+        //GET api/<KhachhangController>/5
         // POST api/<KhachhangController>
+        [AllowAnonymous]
         [HttpPost]
         public void Post([FromBody] Khachhang khachhang)
         {
@@ -46,7 +73,24 @@ namespace ASM.Api.Controllers
                 _khachhangSvc.AddKhachhang(khachhang);
             }
         }
-
+        /// <summary>
+        /// Chỉnh sửa thông tin của khách hàng
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     PUT api/khachhang/1
+        ///     {
+        ///         "FullName" : "Nguyen Van A",
+        ///         "Ngaydat" : "10/8/2021",
+        ///         "PhoneNumber" : "0123456789",
+        ///         "EmailAddress" : "nguyena@gmail.com",
+        ///         "Password" : "1",
+        ///         "ConfirmPassword" : "1"
+        ///     }
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="khachhang"></param>
         // PUT api/<KhachhangController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Khachhang khachhang)

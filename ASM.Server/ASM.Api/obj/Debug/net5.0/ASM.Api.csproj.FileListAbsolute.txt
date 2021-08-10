@@ -70,3 +70,11 @@ C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\obj\Debug\net5.0\ASM.Api.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\obj\Debug\net5.0\ref\ASM.Api.dll
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\obj\Debug\net5.0\ASM.Api.pdb
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\obj\Debug\net5.0\ASM.Api.genruntimeconfig.cache
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Web.Http.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\System.Web.Http.WebHost.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\Swashbuckle.Core.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\WebActivatorEx.dll
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Api\bin\Debug\net5.0\ASM.Api.xml

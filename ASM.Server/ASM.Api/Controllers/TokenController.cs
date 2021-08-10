@@ -26,7 +26,20 @@ namespace ASM.Api.Controllers
             _configuration = config;
         }
 
-        
+        /// <summary>
+        /// Trả về token dùng để xác thực các request
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST api/token
+        ///         {
+        ///             "email":"minhtran@gmail.com",
+        ///             "password":"1"
+        ///         }
+        /// </remarks>
+        /// <param name="viewWebLogin"></param>
+        /// <returns>Token to send request</returns>
         [HttpPost]
         public async Task<IActionResult> Post(ViewWebLogin viewWebLogin)
         {
