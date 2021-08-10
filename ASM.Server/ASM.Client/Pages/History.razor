@@ -6,7 +6,9 @@
 <h3>Đơn hàng</h3>
 @if (donhangs == null)
 {
-    <p>Loading ...</p>
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
 }
 else
 {
@@ -33,15 +35,15 @@ else
                     <td>
                         @if (item.TrangthaiDonhang == TrangthaiDonhang.Danggiao)
                         {
-                            <span>Đang giao</span>
+                            <span class="btn btn-warning">Đang giao</span>
                         }
                         else if (item.TrangthaiDonhang == TrangthaiDonhang.Dagiao)
                         {
-                            <span>Đã giao</span>
+                            <span class="btn btn-success">Đã giao</span>
                         }
                         else
                         {
-                            <span>Mới đặt</span>
+                            <span class="btn btn-info">Mới đặt</span>
                         }
                     </td>
                     <td>

@@ -17,12 +17,12 @@
         <input type="hidden" @bind="monan.MonAnID" />
         <div class="form-group">
             <label>Tên món ăn</label>
-            <input type="text" class="form-control" placeholder="Họ tên" @bind="@monan.Name">
+            <input type="text" class="form-control" placeholder="Tên món ăn" @bind="@monan.Name">
             <ValidationMessage For="@(() => monan.Name)" />
         </div>
         <div class="form-group">
             <label>Giá</label>
-            <input type="text" class="form-control" placeholder="Email" @bind="@monan.Gia">
+            <input type="text" class="form-control" placeholder="Giá" @bind="@monan.Gia">
             <ValidationMessage For="@(() => monan.Gia)" />
         </div>
         <div class="form-group">

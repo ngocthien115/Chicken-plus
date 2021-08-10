@@ -1,6 +1,7 @@
 ﻿@page "/details/{id}"
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject NavigationManager nav
 @inject HttpClient client
 @using Newtonsoft.Json
 
@@ -8,6 +9,7 @@
         .img-detail {
             width: 100%;
             height: 350px;
+            font-weight:bold;
         }
 
         .tensp {
@@ -17,6 +19,7 @@
 
         .gia {
             font-size: 18px;
+            color:red;
             margin-top: 10px;
             margin-bottom: 20px;
         }
@@ -24,20 +27,20 @@
     </style>
 
 
-<h3>Details</h3>
+<h3>Chi tiết món ăn</h3>
 
-<div class="w-75 m-auto mt-5 border border-1 p-3">
+<div class="w-75 m-auto mt-5 border border-2 p-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-5">
             <img class="img-detail" src="@imgUrl" />
         </div>
-        <div class="col-8 p-4 border border-1">
+        <div class="col-7 p-4 border border-1">
             <div class="tensp">@monan.Name</div>
             <div class="phanloai">Loại: @monan.Phanloai</div>
             <div class="gia">Giá : @monan.Gia</div>
             <div class="control">
-                <button class="btn btn-primary">Mua ngay</button>
-                <button class="btn btn-info" onmouseup="addCart(@monan.MonAnID);" @onclick="AddCart">Thêm vào giỏ hàng</button>
+                <button class="btn btn-primary" @onclick="AddCart">Mua ngay</button>
+                <button class="btn btn-info" @onclick="AddCart">Thêm vào giỏ hàng</button>
             </div>
         </div>
     </div>
@@ -71,7 +74,7 @@
 
             var monAn = monans.Where(u => u.MonAnID == monan.MonAnID).FirstOrDefault();
             List<CartItem> listCart = new List<CartItem>()
-                {
+            {
                     new CartItem
                     {
                         MonAn = monAn,
@@ -128,5 +131,10 @@
             }
         }
         return tongtien;
+    }
+    private void Direct()
+    {
+        AddCart();
+        nav.NavigateTo("/cart", true);
     }
 }

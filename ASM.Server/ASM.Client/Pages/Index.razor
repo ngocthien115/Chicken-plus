@@ -61,7 +61,9 @@
 
 @if (monans == null)
 {
-    <p>Loading ...</p>
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
 }
 else
 {
@@ -84,6 +86,8 @@ else
         </div>
     }
 </div>
-<Pagination TotalPagesQuantity="totalPageQuantity" CurrentPage="currentPage" Radius="2"
-            SelectedPage="SelectedPage"/>
+<div>
+    <Pagination TotalPagesQuantity="totalPageQuantity" CurrentPage="currentPage" Radius="2"
+                SelectedPage="SelectedPage" />
+</div>
 }

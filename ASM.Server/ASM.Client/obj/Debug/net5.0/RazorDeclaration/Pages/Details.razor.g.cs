@@ -90,7 +90,7 @@ using ASM.Share.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Details.razor"
+#line 6 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Details.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -105,7 +105,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 51 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Details.razor"
+#line 54 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Pages\Details.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -129,7 +129,7 @@ using Newtonsoft.Json;
 
             var monAn = monans.Where(u => u.MonAnID == monan.MonAnID).FirstOrDefault();
             List<CartItem> listCart = new List<CartItem>()
-                {
+            {
                     new CartItem
                     {
                         MonAn = monAn,
@@ -187,11 +187,17 @@ using Newtonsoft.Json;
         }
         return tongtien;
     }
+    private void Direct()
+    {
+        AddCart();
+        nav.NavigateTo("/cart", true);
+    }
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient client { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager nav { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
     }

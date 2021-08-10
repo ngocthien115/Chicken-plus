@@ -834,3 +834,7 @@ C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\build-gz\cg3
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\build-gz\bGEAJwSi.gz
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\RazorDeclaration\Pages\Changepassword.razor.g.cs
 C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\Razor\Pages\Changepassword.razor.g.cs
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\RazorDeclaration\Pages\Footer.razor.g.cs
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\Razor\Pages\Footer.razor.g.cs
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\RazorDeclaration\Pages\Search.razor.g.cs
+C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\obj\Debug\net5.0\Razor\Pages\Search.razor.g.cs

@@ -104,18 +104,30 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 83 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
+#line 127 "C:\Users\nthie\Downloads\ASM\ASM.Server\ASM.Client\Shared\WebLoginPartial.razor"
       
     string id;
-    string count = "0";
+    string count;
     string emailAddress;
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
+        count = "0";
         id = sessionStorage.GetItem<string>("KhachhangId");
         emailAddress = sessionStorage.GetItem<string>("Email");
+        var cart = sessionStorage.GetItem<string>("Cart");
+        if (cart == null)
+        {
+            count = "0";
+        }
+        else
+        {
+            Cart giohang = JsonConvert.DeserializeObject<Cart>(cart);
+            count = giohang.ListViewCart.Count.ToString();
+        }
+
     }
 
-    
+
     protected void Logout()
     {
         sessionStorage.RemoveItem("AccessToken");

@@ -99,6 +99,7 @@ namespace ASM.Api
                 builder.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
+                        .WithExposedHeaders("soluongtrang")
 
                 )
              );

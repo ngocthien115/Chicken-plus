@@ -33,9 +33,8 @@ namespace ASM.Client.Pages
         {
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Headers", "*");
             HttpResponseMessage httpResponse = await client.GetAsync(apiUrl + $"monan?page={page}&quantityPerPage={quantityPerPage}");
-            //totalPageQuantity = int.Parse(httpResponse.Headers.GetValues("soluongtrang").FirstOrDefault());
+            totalPageQuantity = int.Parse(httpResponse.Headers.GetValues("soluongtrang").FirstOrDefault());
             var responseString = await httpResponse.Content.ReadAsStringAsync();
             Console.WriteLine(httpResponse.Headers.Contains("soluongtrang"));
             monans = System.Text.Json.JsonSerializer.Deserialize<List<MonAn>>(responseString,

@@ -49,7 +49,6 @@ namespace ASM.Server.Pages
                 {
                     new Claim(ClaimTypes.Name, paramUsername),
                     new Claim(ClaimTypes.Role, "Admin"),
-                    new Claim(ClaimTypes.SerialNumber, "1")
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

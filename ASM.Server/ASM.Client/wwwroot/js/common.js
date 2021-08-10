@@ -33,3 +33,6 @@ function mahoapwd(oldpwd) {
     var md5Hash = CryptoJS.MD5(oldpwd);
     return md5Hash.toString();
 }
+//$(window).on("load", function () {
+//    $(".loader-wrapper").fadeOut("slow");
+//});

@@ -1,17 +1,39 @@
 ﻿@inherits LayoutComponentBase
 
-    <style>
-        .chinh{
-            margin: 0 auto;
-            padding-top:100px;
-        }
-    </style>
-
+<style>
+    .chinh {
+        margin: 0 auto;
+        padding-top: 100px;
+    }
+</style>
+<WebLayout />
 <div class="container w-75">
-    
-    <WebLayout/>
+
+
 
     <div class="m-auto chinh">
         @Body
     </div>
 </div>
+<footer class="text-center text-white" style="background-color: #45637d;">
+    <!-- Grid container -->
+    <div class="">
+        <!-- Section: Iframe -->
+        <section class="">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6">
+                    <div>
+                        <iframe width="320" height="170" src="https://www.youtube.com/embed/-upQhCwTO90"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Iframe -->
+    </div>
+    <!-- Grid container -->
+</footer>

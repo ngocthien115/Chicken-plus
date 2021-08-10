@@ -72,7 +72,7 @@ namespace ASM.Client.Pages
                 {
                     Console.WriteLine("Thanh cong");
                     sessionStorage.RemoveItem("Cart");
-                    NavigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("/history/" + khachhangId);
                 }
             }
         }

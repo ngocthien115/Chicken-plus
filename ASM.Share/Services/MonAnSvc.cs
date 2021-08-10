@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ASM.Share.Models
 {
@@ -22,6 +23,7 @@ namespace ASM.Share.Models
         int EditMonAn(int id, MonAn monAn);
 
         void DeleteMonAn(int id);
+        Task<IEnumerable<MonAn>> Phanloai(Phanloai loai);
     }
     public class MonAnSvc : IMonAnSvc
     {
@@ -93,6 +95,17 @@ namespace ASM.Share.Models
             MonAn monan = GetMonAn(id);
             _context.Remove(monan);
             _context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<MonAn>> Phanloai(Phanloai loai)
+        {
+            IQueryable<MonAn> query = _context.MonAns;
+            if (loai != null)
+            {
+                query = query.Where(e => e.Phanloai == loai);
+            }
+
+            return await query.ToListAsync();
         }
     }
     
